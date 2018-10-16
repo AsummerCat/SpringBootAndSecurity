@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div align="center" style="margin-top: 15px" sec:authorize="!isAuthenticated()">
+    <h4 style="color: blue;">欢迎您，亲爱的召唤师!<a th:href="@{/login}"> 请登录</a></h4>
+</div>
+<div align="center" style="margin-top: 15px" sec:authorize="isAuthenticated()">
+    你登陆啦
+</div>
+<div align="center" style="margin-top: 15px" sec:authorize="isAuthenticated()">
+    <h4 style="color: blue;">召唤师 <span sec:authentication="name"></span>
+        ! 您的段位为：<span sec:authentication="principal.authorities"></span>
+        <div sec:authentication=""></div>
+    </h4>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" th:value="注销登录">
+    </form>
+</div>
+
+<div align="center" style="margin-top: 100px" sec:authorize="hasRole('ROLE_AAA')">
+    <a th:href="@{/bronze}">点击领取英勇青铜段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasAnyRole('USER','ROLE_AAA')">
+    <a th:href="@{/silver}">点击领取不屈白银段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasAnyRole('USER','ROLE_AAA')">
+    <a th:href="@{/gold}">点击领取荣耀黄金段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasRole('华贵铂金')">
+    <a th:href="@{/platinum}">点击领取华贵铂金段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasRole('璀璨钻石')">
+    <a th:href="@{/diamond}">点击领取璀璨钻石段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasRole('超凡大师')">
+    <a th:href="@{/master}">点击领取超凡大师段位奖励</a>
+</div>
+<div align="center" style="margin-top: 100px" sec:authorize="hasRole('最强王者')">
+    <a th:href="@{/challenger}">点击领取最强王者段位奖励</a>
+</div>
+</body>
+</html>

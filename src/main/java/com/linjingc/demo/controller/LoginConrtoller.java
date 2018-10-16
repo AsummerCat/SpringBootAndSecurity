@@ -2,13 +2,13 @@ package com.linjingc.demo.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.naming.NameNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +32,7 @@ public class LoginConrtoller {
 
     @RequestMapping("heihei")
     public String heihei() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();   //登陆后的账号 转换为 UserDetails
         return "heihei";
     }
 
@@ -41,8 +42,8 @@ public class LoginConrtoller {
     @RequestMapping("home")
     @ResponseBody
     public Object home() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","退出成功");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "退出成功");
         return map;
     }
 
@@ -53,8 +54,8 @@ public class LoginConrtoller {
     @RequestMapping("admin")
     @ResponseBody
     public Object admin() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","你拥有admin这个权限");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "你拥有admin这个权限");
         return map;
     }
 
@@ -65,10 +66,11 @@ public class LoginConrtoller {
     @RequestMapping("add")
     @ResponseBody
     public Object add() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","你拥有ROLE_AAA这个权限");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "你拥有ROLE_AAA这个权限");
         return map;
     }
+
     /**
      * 拥有update这个权限
      */
@@ -76,8 +78,8 @@ public class LoginConrtoller {
     @RequestMapping("update")
     @ResponseBody
     public Object update() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","你拥有update这个权限");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "你拥有update这个权限");
         return map;
     }
 
@@ -88,8 +90,8 @@ public class LoginConrtoller {
     @RequestMapping("update1")
     @ResponseBody
     public Object update1() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","你拥有update这个权限");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "你拥有update这个权限");
         return map;
     }
 
@@ -100,8 +102,8 @@ public class LoginConrtoller {
     @RequestMapping("me")
     @ResponseBody
     public Object isRememberMe() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","记住我了");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "记住我了");
         return map;
     }
 
@@ -111,8 +113,8 @@ public class LoginConrtoller {
     @RequestMapping("AAA")
     @ResponseBody
     public Object AAA() {
-        Map<String,String> map=new HashMap<>(1);
-        map.put("message","你拥有ROLE_AAA这个权限");
+        Map<String, String> map = new HashMap<>(1);
+        map.put("message", "你拥有ROLE_AAA这个权限");
         return map;
     }
 }
